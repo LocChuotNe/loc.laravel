@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('phone', 20)->nullable();
             $table->string('province_id', 10)->nullable();
             $table->string('district_id', 10)->nullable();
+            $table->enum('role', ['super_admin', 'staff'])->default('staff');
             $table->string('war_id', 10)->nullable();
             $table->string('address')->nullable();
             $table->dateTime('birthday')->nullable();
