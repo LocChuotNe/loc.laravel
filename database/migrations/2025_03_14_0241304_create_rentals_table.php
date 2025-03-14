@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('rentals', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->decimal('total_price', 10, 2);
-            $table->date('rental_date');
-            $table->date('due_date');
-            $table->date('return_date')->nullable();
-            $table->enum('status', ['pending', 'returned', 'overdue'])->default('pending');
+            $table->unsignedBigInteger('customer_id');
+            $table->foreignId('book_id')->constrained('books')->onDelete('cascade'); // **Dòng này bị thiếu trong code của bạn**
+            $table->dateTime('rental_date');
+            $table->dateTime('return_date')->nullable();
+            $table->enum('status', ['pending', 'rented', 'returned', 'overdue'])->default('pending');
             $table->timestamps();
+
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
         });
     }
 

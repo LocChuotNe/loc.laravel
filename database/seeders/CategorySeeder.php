@@ -14,10 +14,9 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         Category::insert([
-            ['name' => 'Fiction'],
-            ['name' => 'Science'],
-            ['name' => 'History'],
-            ['name' => 'Technology'],
+            ['name' => 'Văn học', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Khoa học', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Công nghệ', 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 }

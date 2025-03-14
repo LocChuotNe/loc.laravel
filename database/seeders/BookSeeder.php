@@ -14,16 +14,8 @@ class BookSeeder extends Seeder
     public function run(): void
     {
         Book::insert([
-            [
-                'title' => 'Laravel for Beginners',
-                'author' => 'John Doe',
-                'category_id' => 1,
-                'isbn' => '1234567890',
-                'published_year' => 2020,
-                'quantity' => 5,
-                'rental_price' => 50.00,
-                'status' => 'available',
-            ]
+            ['title' => 'Đắc Nhân Tâm', 'author' => 'Dale Carnegie', 'category_id' => 1, 'stock' => 10, 'rental_price' => 5000, 'created_at' => now(), 'updated_at' => now()],
+            ['title' => 'Hành Trình Về Phương Đông', 'author' => 'Baird T. Spalding', 'category_id' => 1, 'stock' => 5, 'rental_price' => 7000, 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 }

@@ -9,5 +9,15 @@ class Rental extends Model
 {
     use HasFactory;
 
-    protected $table = 'rentals';
+    protected $fillable = ['customer_id', 'book_id', 'rental_date', 'return_date', 'status'];
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function book()
+    {
+        return $this->belongsTo(Book::class);
+    }
 }
