@@ -17,6 +17,7 @@ class CategorySeeder extends Seeder
             ['name' => 'Văn học', 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'Khoa học', 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'Công nghệ', 'created_at' => now(), 'updated_at' => now()],
+            
         ]);
     }
 }

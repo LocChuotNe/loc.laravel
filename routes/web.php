@@ -20,14 +20,15 @@ Route::get('dashboard/index', [DashboardController::class, 'index'])->name('dash
 /* USER ROUTES */
 Route::get('user/index', [UserController::class, 'index'])->name('user.index')->middleware('admin');
 
-/* RENTAL ROUTES */
+/* RENTAL ROUTES/Done */
 Route::get('rental/index', [RentalController::class, 'index'])->name('rental.index')->middleware('admin');
 
 /* OVERDUE ROUTES */
 Route::get('overdue/index', [OverdueController::class, 'index'])->name('overdue.index')->middleware('admin');
 
-/* BOOK ROUTES */
+/* BOOK ROUTES/Done */
 Route::get('book/index', [BookController::class, 'index'])->name('book.index')->middleware('admin');
+
 
 Route::get('admin', [AuthController::class, 'index'])->name('auth.admin')->middleware('login');
 Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
