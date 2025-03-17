@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('rentals', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('customer_id');
-            $table->foreignId('book_id')->constrained('books')->onDelete('cascade'); // **Dòng này bị thiếu trong code của bạn**
+            $table->foreignId('book_id')->constrained('books')->onDelete('cascade');
             $table->dateTime('rental_date');
             $table->dateTime('return_date')->nullable();
             $table->enum('status', ['pending', 'rented', 'returned', 'overdue'])->default('pending');
