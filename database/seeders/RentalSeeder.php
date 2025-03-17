@@ -26,25 +26,27 @@ class RentalSeeder extends Seeder
          // Tạo 10 bản ghi thử nghiệm
          $rentals = [];
          for ($i = 0; $i < 10; $i++) {
-             $rentalDate = Carbon::now()->subDays(rand(5, 30));
-             $returnDate = (rand(0, 1) == 1) ? $rentalDate->copy()->addDays(rand(5, 20)) : null;
+            $rentalDate = Carbon::now()->subDays(rand(5, 30));
+            $returnDate = (rand(0, 1) == 1) ? $rentalDate->copy()->addDays(rand(5, 20)) : null;
             
-            $status = 'pending'; // Mặc định là 'pending'
+            $status = 'pending';
             if ($returnDate) {
-                $status = 'returned'; // Nếu có ngày trả, đặt là 'returned'
+                $status = 'returned'; // Nếu có ngày trả
             } elseif ($rentalDate->diffInDays(now()) > 20) {
-                $status = 'overdue'; // Nếu quá hạn 20 ngày thì đặt là 'overdue'
+                $status = 'overdue'; // Nếu quá hạn 20 ngày
             }
 
-             $rentals[] = [
-                 'customer_id'  => $customers->random()->id,
-                 'book_id'      => $books->random()->id,
-                 'rental_date'  => $rentalDate,
-                 'return_date'  => $returnDate,
-                 'status'       => $status,
-                 'created_at'   => now(),
-                 'updated_at'   => now(),
-             ];
+            $book = $books->random();
+            $rentals[] = [
+                'customer_id'  => $customers->random()->id,
+                'book_id'      => $book->id,
+                'title'        => $book->title ?? $book->title_en,
+                'rental_date'  => $rentalDate,
+                'return_date'  => $returnDate,
+                'status'       => $status,
+                'created_at'   => now(),
+                'updated_at'   => now(),
+            ];
          }
  
          // Chèn dữ liệu vào database

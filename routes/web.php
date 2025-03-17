@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\RentalController;
 use App\Http\Controllers\Backend\OverdueController;
 use App\Http\Controllers\Backend\BookController;
+use App\Http\Controllers\ImageController;
 use App\Http\Middleware\AdminAuthMiddleware;
 
 Route::get('/', function () {
@@ -29,6 +30,10 @@ Route::get('overdue/index', [OverdueController::class, 'index'])->name('overdue.
 /* BOOK ROUTES/Done */
 Route::get('book/index', [BookController::class, 'index'])->name('book.index')->middleware('admin');
 
+/* Image*/
+Route::post('/upload', [ImageController::class, 'upload'])->name('image.upload')->middleware('admin');
+
+Route::post('/users/{id}/update-avatar', [UserController::class, 'updateAvatar'])->name('users.updateAvatar');
 
 Route::get('admin', [AuthController::class, 'index'])->name('auth.admin')->middleware('login');
 Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');

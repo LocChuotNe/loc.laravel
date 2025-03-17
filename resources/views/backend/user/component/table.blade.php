@@ -22,7 +22,16 @@
             </td>
             <td>
                 <div class="">
-                    <img class="rounded img-fluid avatar-65 image-custom" src="https://chiemtaimobile.vn/images/companies/1/%E1%BA%A2nh%20Blog/avatar-facebook-dep/Hinh-dai-dien-hai-huoc-cam-dep-duoi-ai-do.jpg?1704789789335" alt="" loading="lazy" />
+                <form id="upload-avatar-form" enctype="multipart/form-data">
+                    @csrf
+                    <input type="file" id="avatar-input" name="image" accept="image/*">
+                    <button type="submit">Upload Avatar</button>
+                </form>
+                @if ($user->image)
+                    <img src="{{ asset('storage/' . $user->image->thumbnail_320) }}" width="50" height="50">
+                @else
+                    <img src="{{ asset('default-avatar.png') }}" width="50" height="50">
+                @endif
                     <td class="media-support-info">
                         <h5 class="iq-sub-label info-item name">Họ và tên: {{ $user->name }}</h5>
                         <div class="mb-1 address-item address"><strong>Địa chỉ</strong>: Số 2 Yên Phúc</div>
@@ -106,3 +115,23 @@
     </tbody>
 </table>
 {{ $users->links('pagination::bootstrap-5') }}
+<script>
+document.getElementById('upload-avatar-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    let formData = new FormData(this);
+
+    fetch("{{ route('users.updateAvatar', ['id' => $user->id]) }}", {
+        method: "POST",
+        body: formData,
+        headers: {
+            "X-CSRF-TOKEN": document.querySelector('input[name="_token"]').value
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            document.getElementById('user-avatar').src = data.image;
+        }
+    });
+});
+</script>

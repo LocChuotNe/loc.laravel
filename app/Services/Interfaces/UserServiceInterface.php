@@ -10,4 +10,5 @@ interface UserServiceInterface
 {
 
     public function paginate();
+    public function with(array $relations);
 }

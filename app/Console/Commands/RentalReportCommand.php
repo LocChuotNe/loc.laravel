@@ -31,6 +31,7 @@ class RentalReportCommand extends Command
         $date = $this->argument('date') ?? Carbon::today()->toDateString();
 
         $rentals = Rental::whereDate('rental_date', $date)->get();
+        dd($rentals);
 
         $this->info("Thống kê đơn thuê ngày: $date");
         foreach ($rentals as $rental) {

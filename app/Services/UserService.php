@@ -21,4 +21,9 @@ class UserService implements UserServiceInterface
         $users = $this->userRepository->getAllPaginate();
         return  $users;
     }
+    public function with(array $relations)
+    {
+        $this->userRepository->with($relations);
+        return $this;
+    }
 }

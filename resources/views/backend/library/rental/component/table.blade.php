@@ -25,7 +25,7 @@
                       </div>
                     </td>
                     <td class="text-dark">{{ $rental->customer->name }}</td>
-                    <td class="text-dark">{{ $rental->book->title }}</td>
+                    <td class="text-dark">{{ $rental->book?->title ?? 'No title available' }}</td>
                     <td class="text-dark">{{ $rental->rental_date }}</td>
                     <td class="text-dark">{{ $rental->return_date }}</td>
                     <td>

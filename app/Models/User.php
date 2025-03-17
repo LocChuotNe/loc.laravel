@@ -27,6 +27,7 @@ class User extends Authenticatable
         'address',
         'birthday',
         'image',
+        'image_id',
         'description',
         'user_agent',
         'ip',
@@ -42,6 +43,11 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function image()
+    {
+        return $this->belongsTo(Image::class, 'image_id');
+    }
 
     /**
      * Get the attributes that should be cast.
