@@ -12,14 +12,20 @@ class AdminAuthMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     ** @param  Request  $request
+     * @param  Closure  $next
+     * @return Response
      */
+
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::check()) {
-            return redirect()->route('auth.admin');
+            return $request->expectsJson()
+                ? response()->json(['message' => 'Unauthorized'], 401)
+                : redirect()->route('auth.admin');
         }
 
         return $next($request);
     }
+
 }

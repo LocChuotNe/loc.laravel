@@ -13,12 +13,20 @@ class BookController extends Controller
 
     }
 
-    public function index(){
+    public function index(Request $request){
         $books = Book::with('category')->get();
+    
+        if ($request->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'data' => $books
+            ]);
+        }
+    
         $template = 'backend.library.book.layout';
-        return view('backend.dashboard.layout', compact(
-            'template',
-            'books',
-        ));
+            return view('backend.dashboard.layout', compact(
+                'template',
+                'books')
+            );
     }
 }

@@ -22,16 +22,6 @@
             </td>
             <td>
                 <div class="">
-                <form id="upload-avatar-form" enctype="multipart/form-data">
-                    @csrf
-                    <input type="file" id="avatar-input" name="image" accept="image/*">
-                    <button type="submit">Upload Avatar</button>
-                </form>
-                @if ($user->image)
-                    <img src="{{ asset('storage/' . $user->image->thumbnail_320) }}" width="50" height="50">
-                @else
-                    <img src="{{ asset('default-avatar.png') }}" width="50" height="50">
-                @endif
                     <td class="media-support-info">
                         <h5 class="iq-sub-label info-item name">Họ và tên: {{ $user->name }}</h5>
                         <div class="mb-1 address-item address"><strong>Địa chỉ</strong>: Số 2 Yên Phúc</div>
@@ -55,7 +45,7 @@
             </td>
             <td>
                 <div class="d-flex justify-content-evenly">
-                    <a class="btn btn-primary btn-icon btn-sm rounded-pill" href="#" role="button">
+                    <a class="btn btn-primary btn-icon btn-sm rounded-pill" href="{{ route('user.create') }}" role="button">
                         <span class="btn-inner">
                             <svg class="icon-32" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -115,23 +105,3 @@
     </tbody>
 </table>
 {{ $users->links('pagination::bootstrap-5') }}
-<script>
-document.getElementById('upload-avatar-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    let formData = new FormData(this);
-
-    fetch("{{ route('users.updateAvatar', ['id' => $user->id]) }}", {
-        method: "POST",
-        body: formData,
-        headers: {
-            "X-CSRF-TOKEN": document.querySelector('input[name="_token"]').value
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            document.getElementById('user-avatar').src = data.image;
-        }
-    });
-});
-</script>

@@ -1,7 +1,8 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+< !DOCTYPE html >
+<html lang="en" dir="ltr" >
     <head>
-    @include('backend.dashboard.component.head')
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        @include('backend.dashboard.component.head')
     </head>
     <body class="  ">
         <div id="loading">
@@ -28,3 +29,8 @@
         @include('backend.dashboard.component.script')
     </body>
 </html>
+@if (!empty($config['js']))
+    @foreach ($config['js'] as $js)
+        <script src="{{ asset($js) }}"></script>
+    @endforeach
+@endif

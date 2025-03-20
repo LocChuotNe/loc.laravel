@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\Auth;
 class LoginMiddleware
 {
     /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
-
+        * Handle an incoming request.
+        * @param  Request  $request
+        * @param  Closure  $next
+        * @return Response
+    */
     // chức năng này có chức năng phân quyền. Khi người dùng đang trong trang admin mà quay về trang đăng nhập bằng đường dẫn chứ không dùng logout thì hệ thống
     // không cho phép và tự động đưa về trang admin
 

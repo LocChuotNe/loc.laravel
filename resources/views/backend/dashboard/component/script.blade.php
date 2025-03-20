@@ -30,3 +30,6 @@
 <script src="{{ asset( 'backend/js/hope-ui.js?v=2.2.0' ) }}" defer=""></script>
 <script src="{{ asset( 'backend/js/hope-uipro.js?v=2.2.0' ) }}" defer=""></script>
 <script src="{{ asset( 'backend/js/sidebar.js?v=2.2.0' ) }}" defer=""></script>
+
+<script src="{{ asset( 'backend/js/custom.js' ) }}"></script>
+<script src="{{ asset('vendor/flasher/flasher.min.js') }}"></script>

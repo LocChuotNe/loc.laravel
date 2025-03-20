@@ -1,21 +1,24 @@
 <?php
 
 namespace App\Repositories;
-use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Models\User;
+use App\Repositories\Interfaces\UserRepositoryInterface;
+use App\Repositories\BaseRepository;
 
 /**
  * Class UserService
  * @package App\Repositories
  */
-class UserRepository implements UserRepositoryInterface
+class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
 
+    protected $model;
     protected $query;
 
-    public function __construct()
+    public function __construct(User  $model)
     {
         $this->query = User::query();
+        parent::__construct($model);
     }
 
     public function getAllPaginate() {
