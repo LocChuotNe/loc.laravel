@@ -18,15 +18,12 @@ class BookController extends Controller
     
         if ($request->wantsJson()) {
             return response()->json([
-                'success' => true,
+                'status' => 'success',
                 'data' => $books
             ]);
         }
     
         $template = 'backend.library.book.layout';
-            return view('backend.dashboard.layout', compact(
-                'template',
-                'books')
-            );
+        return view('backend.dashboard.layout', compact('template', 'books'));
     }
 }
