@@ -32,6 +32,8 @@ Route::middleware(['admin'])->group(function () {
     Route::post('/users/{id}/update-avatar', [UserController::class, 'updateAvatar']);
 });
 
+    /* EXPORT RENTALS */
+
 /* AUTHENTICATION */
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout']);

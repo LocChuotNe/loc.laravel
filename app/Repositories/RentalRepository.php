@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Rental;
+use Illuminate\Support\Collection;
 use App\Repositories\Interfaces\RentalRepositoryInterface;
 
 class RentalRepository implements RentalRepositoryInterface
@@ -33,4 +34,10 @@ class RentalRepository implements RentalRepositoryInterface
     {
         return Rental::destroy($id);
     }
+
+    public function getRentalsForExport($startDate, $endDate): Collection
+    {
+        return Rental::whereBetween('rental_date', [$startDate, $endDate])->get();
+    }
 }
+

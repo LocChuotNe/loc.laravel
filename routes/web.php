@@ -37,6 +37,9 @@ Route::middleware(['admin'])->group(function () {
     Route::post('/upload', [ImageController::class, 'upload'])->name('image.upload');
 });
 
+Route::get('/rentals/export', [RentalController::class, 'export'])->name('rentals.export');
+Route::get('/export-rentals', [RentalExportController::class, 'export'])->name('export.rentals');
+
 /* AUTHENTICATION */
 Route::get('admin', [AuthController::class, 'index'])->name('auth.admin')->middleware('login');
 Route::post('login', [AuthController::class, 'login'])->name('auth.login');
