@@ -9,11 +9,11 @@ class Rental extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['customer_id', 'book_id', 'rental_date', 'return_date', 'status'];
+    protected $fillable = ['customer_id','name', 'book_id', 'rental_date', 'return_date', 'status'];
 
     public function customer()
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(Customer::class, 'customer_id');
     }
 
     public function book()

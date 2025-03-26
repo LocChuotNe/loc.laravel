@@ -16,7 +16,11 @@
             </div>
         </div>
         <div class="col-md-4">
-            <a href="" class="btn btn-success">Import to Excel</a>
+            <form action="{{ route('books.import') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <input type="file" name="file" required>
+                <button type="submit" class="btn btn-success">Import Excel</button>
+            </form>
         </div>
     </div>
 </div>

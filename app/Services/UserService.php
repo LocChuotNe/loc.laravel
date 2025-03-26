@@ -50,7 +50,7 @@ class UserService implements UserServiceInterface
             $user = $this->userRepository->create($payload);
 
             DB::commit();
-            return true;
+            return $user;
         }catch(\Exception $e){
             DB::rollBack();
             echo $e->getMessage();die();

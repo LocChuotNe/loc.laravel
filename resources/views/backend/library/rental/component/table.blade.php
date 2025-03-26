@@ -24,8 +24,8 @@
                         {{ $rental->id }}
                       </div>
                     </td>
-                    <td class="text-dark">{{ $rental->customer->name }}</td>
-                    <td class="text-dark">{{ $rental->book?->title ?? 'No title available' }}</td>
+                    <td class="text-dark">{{ $rental->customer_name }}</td>
+                    <td class="text-dark">{{ $rental->book_title ?? 'No title available' }}</td>
                     <td class="text-dark">{{ $rental->rental_date }}</td>
                     <td class="text-dark">{{ $rental->return_date }}</td>
                     <td>
@@ -38,7 +38,7 @@
                       @endif
                     </td>
                     <td>
-                      <h5 class="text-primary mt-2 mb-0">$45.99</h5>
+                      <h5 class="text-primary mt-2 mb-0">{{ number_format(45.99), 2 }}</h5>
                     </td>
                   </tr>
                 @endforeach

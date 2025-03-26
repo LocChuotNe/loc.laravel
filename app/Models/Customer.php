@@ -17,4 +17,9 @@ class Customer extends Model
         'address',
         'birthday',
     ];
+
+
+    public function rentals(){
+        return $this->hasMany(Rental::class, 'customer_id', 'id');
+    }
 }

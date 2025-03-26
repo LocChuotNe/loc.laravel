@@ -20,6 +20,11 @@ class UserController extends Controller
         $this->userService = $userService;
     }
 
+    public function create()
+{
+    return view('backend.user.create'); // Đảm bảo có file này trong thư mục views
+}
+
     public function index(Request $request)
     {
         $users = $this->userService->with(['image'])->paginate(15);

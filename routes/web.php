@@ -38,7 +38,10 @@ Route::middleware(['admin'])->group(function () {
 });
 
 Route::get('/rentals/export', [RentalController::class, 'export'])->name('rentals.export');
-Route::get('/export-rentals', [RentalExportController::class, 'export'])->name('export.rentals');
+Route::group(['prefix' => 'books'], function () {
+    // Route::get('/', [BookController::class, 'index'])->name('books.index');
+    Route::post('/import', [BookController::class, 'import'])->name('books.import');
+});
 
 /* AUTHENTICATION */
 Route::get('admin', [AuthController::class, 'index'])->name('auth.admin')->middleware('login');

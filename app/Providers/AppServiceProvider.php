@@ -14,6 +14,9 @@ class AppServiceProvider extends ServiceProvider
 
         'App\Services\Interfaces\RentalServiceInterface' => 'App\Services\RentalService',
         'App\Repositories\Interfaces\RentalRepositoryInterface' => 'App\Repositories\RentalRepository',
+
+        'App\Services\Interfaces\BookServiceInterface' => 'App\Services\BookService',
+        'App\Repositories\Interfaces\BookRepositoryInterface' => 'App\Repositories\BookRepository',
     ];
 
 
@@ -31,6 +34,10 @@ class AppServiceProvider extends ServiceProvider
                 $this->app->bind($interface, $implementation);
             }
         }
+        
+        $this->app->bind(BookService::class, function ($app) {
+            return new BookService($app->make(\App\Repositories\Interfaces\BookRepositoryInterface::class));
+        });
     }
 
     /**
