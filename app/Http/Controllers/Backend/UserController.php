@@ -20,13 +20,16 @@ class UserController extends Controller
         $this->userService = $userService;
     }
 
-    public function create()
-{
-    return view('backend.user.create'); // Đảm bảo có file này trong thư mục views
-}
+    public function create(Request $request) {
+        $template = 'backend.user.component.index';
+        $config['seo'] = config('apps.user');
+        return view('backend.user.component.create', compact(
+            'template',
+            'config',
+        ));
+    }
 
-    public function index(Request $request)
-    {
+    public function index(Request $request) {
         $users = $this->userService->with(['image'])->paginate(15);
 
         if ($request->expectsJson()) {
@@ -45,9 +48,8 @@ class UserController extends Controller
         ));
     }
 
-    public function store(StoreUserRequest $request)
-    {
-        $user = $this->userService->create($request->validated());
+    public function store(StoreUserRequest $request){
+        $user = $this->userService->create($request);
 
         if ($request->expectsJson()) {
             return response()->json([

@@ -19,7 +19,7 @@ Route::middleware(['admin'])->group(function () {
 
     /* USER ROUTES */
     Route::get('user/index', [UserController::class, 'index'])->name('user.index');
-    Route::get('user/create', [UserController::class, 'create'])->name('user.create');
+    Route::get('user/component/create', [UserController::class, 'create'])->name('user.component.create');
     Route::get('user/update', [UserController::class, 'update'])->name('user.update');
     Route::get('user/destroy', [UserController::class, 'destroy'])->name('user.destroy');
     Route::post('user/store', [UserController::class, 'store'])->name('user.store');

@@ -20,6 +20,8 @@ class UserService implements UserServiceInterface
 
     public function __construct(UserRepository $userRepository){
         $this->userRepository = $userRepository;
+
+
     }
 
     public function paginate() {
@@ -33,7 +35,7 @@ class UserService implements UserServiceInterface
         return $this;
     }
 
-    public function create($request){
+    public function create(Request $request){
         DB::beginTransaction();
         try{
 

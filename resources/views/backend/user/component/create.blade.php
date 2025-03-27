@@ -1,4 +1,5 @@
-@include('backend.dashboard.component.breadbrumb', ['title' => $config['seo']['create']['title']])
+
+@include('backend.dashboard.component.breadcrumb', ['title' => $config['seo']['create']['title']])
 <div class="content-inner pb-0 container-fluid" id="page_layout">
     <div>
         <div class="row">
@@ -101,3 +102,6 @@
         </div>
     </div>
 </div>
+
+
+

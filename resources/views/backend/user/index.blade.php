@@ -1,4 +1,4 @@
-@include('backend.dashboard.component.breadbrumb', ['title' => $config['seo']['index']['title']])
+@include('backend.dashboard.component.breadcrumb', ['title' => $config['seo']['index']['title']])
 <div class="content-inner container-fluid pb-0" id="page_layout">
     <div class="row">
         <div class="col-lg-12">
