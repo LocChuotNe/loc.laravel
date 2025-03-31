@@ -62,7 +62,7 @@
                                     </svg>
                                 </span>
                             </a>
-                            <a class="btn btn-primary btn-icon btn-sm rounded-pill ms-2" href="#" role="button">
+                            <a class="btn btn-primary btn-icon btn-sm rounded-pill ms-2" href="{{ route('user.edit', $user->id) }}" role="button">
                                 <span class="btn-inner">
                                     <svg class="icon-32" width="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path

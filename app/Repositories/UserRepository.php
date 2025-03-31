@@ -24,9 +24,14 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     public function getAllPaginate() {
         return User::paginate(15);
     }
+    
     public function with(array $relations)
     {
         $this->query = $this->query->with($relations);
         return $this;
+    }
+
+    public function findById($id) {
+        return User::find($id);
     }
 }

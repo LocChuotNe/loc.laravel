@@ -11,4 +11,5 @@ interface UserRepositoryInterface
 
     public function getAllPaginate();
     public function with(array $relations);
+    public function findById($id);
 }

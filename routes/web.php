@@ -23,6 +23,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('user/update', [UserController::class, 'update'])->name('user.update');
     Route::get('user/destroy', [UserController::class, 'destroy'])->name('user.destroy');
     Route::post('user/store', [UserController::class, 'store'])->name('user.store');
+    Route::get('user/{id}/edit', [UserController::class, 'edit'])->where(['id' => '[0-9]+'])->name('user.edit');
 
     /* RENTAL ROUTES */
     Route::get('rental/index', [RentalController::class, 'index'])->name('rental.index');

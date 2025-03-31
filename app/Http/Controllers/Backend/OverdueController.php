@@ -11,11 +11,10 @@ class OverdueController extends Controller
 
     }
 
-    public function index(){
-        echo 'Chức năng màn này đang được bảo trì'; die();
-    //     $template = 'backend.rentalbook.rental.layout';
-    //     return view('backend.dashboard.layout', compact(
-    //         'template',
-    //     ));
+    public function index(Request $request){
+        $template = 'backend.library.overdue.layout';
+        return view('backend.dashboard.layout', compact(
+            'template',
+        ));
     }
 }

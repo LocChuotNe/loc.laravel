@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Image;
 use App\Services\Interfaces\UserServiceInterface as UserService;
+use App\Repositories\Interfaces\UserRepositoryInterface as UserRepository;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image as ImageIntervention;
 
@@ -15,18 +16,14 @@ class UserController extends Controller
 {
 
     protected $userService;
+    protected $userRepository;
 
-    public function __construct(UserService $userService) {
+    public function __construct(
+        UserService $userService,
+        UserRepository $userRepository,
+        ){
         $this->userService = $userService;
-    }
-
-    public function create(Request $request) {
-        $template = 'backend.user.component.index';
-        $config['seo'] = config('apps.user');
-        return view('backend.user.component.create', compact(
-            'template',
-            'config',
-        ));
+        $this->userRepository = $userRepository;
     }
 
     public function index(Request $request) {
@@ -40,11 +37,23 @@ class UserController extends Controller
         }
 
         $config['seo'] = config('apps.user');
+        $config['method'] = 'create';
         $template = 'backend.user.index';
         return view('backend.dashboard.layout', compact(
             'template',
             'users',
             'config'
+        ));
+    }
+
+    public function create(Request $request) {
+        $users = $this->userService->with(['image'])->paginate(15);
+
+        $template = 'backend.user.store';
+        $config['seo'] = config('apps.user');
+        return view('backend.dashboard.layout', compact(
+            'template',
+            'config',
         ));
     }
 
@@ -60,5 +69,20 @@ class UserController extends Controller
         }return $user
             ? redirect()->route('user.index')->with('success', 'Thêm mới bản ghi thành công')
             : redirect()->route('user.create')->with('error', 'Thêm mới bản ghi không thành công');
+    }
+
+    public function edit($id){
+        $user = $this->userRepository->findById($id);
+        // dd($user);
+        $users = $this->userService->with(['image'])->paginate(15);
+
+        $template = 'backend.user.store';
+        $config['seo'] = config('apps.user');
+        $config['method'] = 'edit';
+        return view('backend.dashboard.layout', compact(
+            'template',
+            'config',
+            'user'
+        ));
     }
 }
